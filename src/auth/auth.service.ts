@@ -2,6 +2,7 @@ import {
   Injectable,
   UnauthorizedException,
   NotFoundException,
+  Body,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
@@ -17,7 +18,7 @@ export class AuthService {
     private readonly userService: UserService,
   ) {}
 
-  async login(data: LoginUserDto): Promise<{ access_token: string }> {
+  async login(@Body() data: LoginUserDto): Promise<{ access_token: string }> {
     const user = await this.userService.findUserById(data.user_id);
     if (!user) {
       throw new NotFoundException('존재하지 않는 사용자입니다.');
