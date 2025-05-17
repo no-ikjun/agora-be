@@ -10,6 +10,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { User } from './global/entities/user.entity';
 import { ChatModule } from './chat/chat.module';
+import { Chat } from './global/entities/chat.entity';
 
 @Module({
   imports: [
@@ -34,7 +35,7 @@ import { ChatModule } from './chat/chat.module';
       useClass: DatabaseService,
       inject: [DatabaseService],
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Chat]),
     DatabaseModule,
     AuthModule,
     UserModule,
