@@ -20,6 +20,7 @@ export class AuthService {
 
   async login(@Body() data: LoginUserDto): Promise<{ access_token: string }> {
     const user = await this.userService.findUserById(data.user_id);
+    console.log('user', user);
     if (!user) {
       throw new NotFoundException('존재하지 않는 사용자입니다.');
     }

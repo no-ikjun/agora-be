@@ -36,8 +36,10 @@ export class UserService {
     return { access_token };
   }
 
-  async findUserById(userId: string): Promise<User> {
-    return await this.userRepository.findOne({ where: { user_id: userId } });
+  async findUserById(user_id: string): Promise<User> {
+    return await this.userRepository.findOne({
+      where: { user_id },
+    });
   }
 
   async findUserByUserUuid(userUuid: string): Promise<User> {
